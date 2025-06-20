@@ -2,6 +2,10 @@ package product
 
 import "database/sql"
 
+type ProductRepositoryInterface interface {
+	GetProduct(id int) (Product, error)
+}
+
 type ProductRepository struct {
 	db *sql.DB
 }
@@ -12,7 +16,7 @@ func NewProductRepository(db *sql.DB) *ProductRepository {
 	}
 }
 
-func (pr *ProductRepository) GetProductById(id int) (Product, error) {
+func (pr *ProductRepository) GetProduct(id int) (Product, error) {
 	return Product{
 		ID:   id,
 		Name: "ProductName",
